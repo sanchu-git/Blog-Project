@@ -1,0 +1,36 @@
+.home{
+
+}
+
+.homeTitle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Miltonian Tattoo', serif;
+    color: #444
+}
+
+.titleLg{
+    position: absolute;
+    top: 18%;
+    font-size: 20px;
+}
+
+.titleSm{
+    position: absolute;
+    top: 20%;
+    font-size: 100px;
+}
+
+.homeImg{
+    width: 100%;
+    height: 750px;
+    margin-top: 170px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.our{
+    text-align: center;
+    margin-top: 20px;
+}
