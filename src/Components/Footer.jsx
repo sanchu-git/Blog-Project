@@ -7,7 +7,7 @@ function Footer() {
       <div className="container footer-content d-flex justify-content-between">
         <div className="footerTitle w-25 mt-5">
           <a style={{textDecoration:'none'}} href='/home'>
-            <h3 style={{color:'white'}}> <i class="fa-solid fa-blog fa-bounce"></i>
+            <h3 style={{color:'white',height:'50px'}}> <i class="fa-solid fa-blog fa-bounce"></i>
               Blogs</h3>
           </a>
           <span style={{color:'white'}}>
@@ -18,20 +18,20 @@ function Footer() {
           <span style={{color:'white'}}>Currently v5.3.2</span>
         </div>
         <div className="links d-flex flex-column mt-5">
-          <h3 style={{color:'white'}}>Links</h3>
-          <Link to={'/home'} className='text-dark' style={{  textDecoration:'none' }}>Home</Link>
-          <Link to={'/login'} className='text-dark' style={{textDecoration:'none' }}>Login</Link>
-          <Link to={'/register'} className='text-dark' style={{ textDecoration:'none' }}>Register</Link>
+          <h3 style={{color:'white',height:'50px'}}>Links</h3>
+          <Link to={'/home'} className='text-white' style={{  textDecoration:'none' }}>Home</Link>
+          <Link to={'/login'} className='text-white' style={{textDecoration:'none' }}>Login</Link>
+          <Link to={'/register'} className='text-white' style={{ textDecoration:'none' }}>Register</Link>
         </div>
 
         <div className="guides d-flex flex-column mt-5">
-          <h3 style={{color:'white'}}>Guides</h3>
-          <a  className='text-decoration-none text-dark' href="">React</a>
-          <a  className='text-decoration-none text-dark' href="">React Bootstrap</a>
-          <a  className='text-decoration-none text-dark' href="">React Routing</a>
+          <h3 style={{color:'white',height:'50px'}}>Guides</h3>
+          <a  className='text-decoration-none text-white' href="">React</a>
+          <a  className='text-decoration-none text-white' href="">React Bootstrap</a>
+          <a  className='text-decoration-none text-white' href="">React Routing</a>
         </div>
         <div className="contact d-flex flex-column mt-5">
-          <h3 style={{color:'white'}}>Contact Us</h3>
+          <h3 style={{color:'white',height:'50px'}}>Contact Us</h3>
           <div className='d-flex'> 
           <input type="text" placeholder='Enter your mail' className='form-control' />
           <button  className='btn btn-success  ms-2'><i class="fa-solid fa-arrow-right"></i></button>

@@ -1,7 +1,41 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-function Register() {
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { registerAPI } from '../../Services/allAPIs';
 
+
+function Register() {
+  const navigate = useNavigate()
+  const [userData,setUserData] = useState({
+    username:"",email:"",password:""
+  })
+const handleRegister = async (e)=>{
+  e.preventDefault()
+  console.log(userData);
+  const {username,email,password} = userData
+  if(!username || !email || !password){
+    toast.warning("please fill the form completely!!!")
+  }else{
+    // toast.success("proceed to api call")
+    try{
+      const result = await registerAPI(userData)
+      console.log(result);
+      if(result.status===200){
+        toast.success(`${result.data.username} has Registered Successfully!!!`)
+        setUserData({username:"",email:"",password:""})
+        setTimeout(()=>{
+          navigate('/login')
+        }, 3000)
+      }else{
+        toast.warning(result.response.data)
+      }
+    }catch(err){
+      console.log(err);
+    }
+  }
+
+}
   return (
     <>
       <div style={{ height: 'auto', overflowX: 'hidden', background: 'url(https://images.unsplash.com/photo-1548092372-0d1bd40894a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }} className='w-auto'>
@@ -14,18 +48,18 @@ function Register() {
               </div>
             </div>
             <div className="col-lg-6 ">
-              <form className="form  rounded bg-black shadow ">
+              <form className="form  rounded bg-black shadow ">  
                 <div className="flex-column">
                   <label className='text-light fw-normal '>Name </label>
                 </div>
-                <div className="inputForm">
+                <div className="inputForm" onChange={e=>setUserData({...userData,username:e.target.value})} value={userData.username}>
                   <i class="fa-regular fa-user text-black"></i>
                   <input type="text" className="input bg-black text-light" placeholder="Enter your Name" />
                 </div>
                 <div className="flex-column">
                   <label className='text-light fw-normal '>Email </label>
                 </div>
-                <div className="inputForm">
+                <div className="inputForm" onChange={e=>setUserData({...userData,email:e.target.value})} value={userData.email}>
                   <svg height="20" viewBox="0 0 32 32" width="20" xmlns="http://www.w3.org/2000/svg">
                     <g id="Layer_3" data-name="Layer 3">
                       <path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"></path>
@@ -35,9 +69,9 @@ function Register() {
                 </div>
 
                 <div className="flex-column">
-                  <label className='text-light fw-normal '>Password </label>
+                  <label className='text-light fw-normal'>Password </label>
                 </div>
-                <div className="inputForm">
+                <div className="inputForm" onChange={e=>setUserData({...userData,password:e.target.value})} value={userData.password}>
                   <svg height="20" viewBox="-64 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg">
                     <path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"></path>
                     <path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"></path>
@@ -53,7 +87,7 @@ function Register() {
                     <label className='text-light ms-2'>Remember me </label>
                   </div>
                 </div>
-                <Link to={'/'} className="button-submit text-light btn pt-2  fw-semibold ">Sign Up</Link>
+                <button  onClick={handleRegister} className="button-submit text-light btn pt-2  fw-semibold ">Sign Up</button>
                 <p className="p text-light">
                   Already have an account? <Link to={'/login'} className="span text-light">Sign In</Link>
                 </p>
@@ -86,6 +120,7 @@ function Register() {
           </div>
         </div>
       </div>
+      <ToastContainer  autoClose={3000} theme='colored'/>
     </>
   )
 }

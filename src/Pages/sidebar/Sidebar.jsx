@@ -2,7 +2,8 @@ import React from 'react'
 import './sidebar.css'
 function Sidebar() {
   return (
-    <div className='sidebar'>
+    <div className='sidebar' data-aos="zoom-in-up" data-aos-easing="ease-out-cubic"
+    data-aos-duration="2000">
         <div className='sidebarItems sm-2'>
             <span className='title sm-2'>ABOUT ME</span>
             <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtyAAydpu7aahNweAH8Xp_DdVuTp8a7VCCn5vy3PFybOHSyh8ayPtfcCZxEci6qSE3Zbo&usqp=CAU" alt="" />
